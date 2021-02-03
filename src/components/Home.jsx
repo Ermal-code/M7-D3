@@ -1,5 +1,5 @@
 import React from "react";
-import { Form, Col, Container, Button, Spinner, Toast } from "react-bootstrap";
+import { Form, Col, Container, Button, Spinner } from "react-bootstrap";
 import ShowJobs from "./ShowJobs";
 
 class Home extends React.Component {
@@ -59,25 +59,6 @@ class Home extends React.Component {
       console.log(error);
     }
   };
-
-  componentDidUpdate(prevProps) {
-    if (prevProps.favorites.length < this.props.favorites.length) {
-      this.setState({ showPopover: true }, () => {
-        if (this.timer) {
-          clearTimeout(this.timer);
-        }
-        this.timer = setTimeout(
-          () => this.setState({ showPopover: false }),
-          2500
-        );
-      });
-    }
-  }
-  componentWillUnmount() {
-    if (this.timer) {
-      clearTimeout(this.timer);
-    }
-  }
 
   render() {
     return (

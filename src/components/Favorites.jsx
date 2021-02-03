@@ -20,7 +20,7 @@ class Favorites extends React.Component {
           <hr />
           {favorites &&
             favorites.map((job, index) => (
-              <div key={index}>
+              <div key={`${index}haha`}>
                 <Job
                   // addJob={this.props.addJob}
                   theJob={job}
