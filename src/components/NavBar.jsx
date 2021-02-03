@@ -2,7 +2,7 @@ import React from "react";
 import { withRouter, Link } from "react-router-dom";
 import { Navbar, Nav, Container } from "react-bootstrap";
 
-function NavBar() {
+function NavBar(props) {
   return (
     <Navbar bg="primary" variant="dark">
       <Container>
@@ -10,10 +10,24 @@ function NavBar() {
           <Navbar.Brand>Get a Job</Navbar.Brand>
         </Link>
         <Nav className="ml-auto">
-          <Link to="/" className=" text-light nav-link">
+          <Link
+            to="/"
+            className={
+              props.location.pathname === "/" ? "active nav-link" : "nav-link"
+            }
+          >
             Home
           </Link>
-          <Nav.Link href="#features">All jobs</Nav.Link>
+          <Link
+            to="/favorites"
+            className={
+              props.location.pathname === "/favorites"
+                ? "active nav-link"
+                : "nav-link"
+            }
+          >
+            Favorites
+          </Link>
           <Nav.Link href="#pricing">Post a job</Nav.Link>
         </Nav>
       </Container>

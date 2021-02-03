@@ -11,3 +11,7 @@
   text-decoration: underline;
   color: #1d80be;
 }
+
+.fa-star:hover {
+  cursor: pointer;
+}

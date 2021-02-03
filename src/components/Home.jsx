@@ -7,8 +7,8 @@ class Home extends React.Component {
     loading: false,
     data: [],
     addSearchOptions: {
-      description: "",
-      location: "",
+      description: "backend",
+      location: "london",
     },
   };
 
@@ -29,7 +29,7 @@ class Home extends React.Component {
       console.log(url);
       let response = await fetch(url);
       let data = await response.json();
-      console.log(data);
+
       this.setState({ data });
       if (response.ok) {
         this.setState({
@@ -98,7 +98,7 @@ class Home extends React.Component {
             </div>
           ) : (
             this.state.data.length > 0 && (
-              <ShowJobs jobs={this.state.data} addJob={this.props.addJob} history={this.props.history} />
+              <ShowJobs jobs={this.state.data} history={this.props.history} />
             )
           )}
         </Container>
