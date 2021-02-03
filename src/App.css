@@ -1,0 +1,13 @@
+.job-box {
+  display: flex;
+  justify-content: space-between;
+}
+
+.job-box:hover {
+  background-color: #f8f9fa;
+}
+.job-box h4:hover {
+  cursor: pointer;
+  text-decoration: underline;
+  color: #1d80be;
+}
