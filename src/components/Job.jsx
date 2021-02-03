@@ -12,9 +12,9 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 class Job extends React.Component {
-  state = {
-    fav: false,
-  };
+  //   state = {
+  //     fav: false,
+  //   };
   converDateToDay = (day) => {
     let time = day.split(" ");
     time = [time[0], time[1], time[2]];
@@ -30,31 +30,25 @@ class Job extends React.Component {
   };
 
   addToFav = (obj) => {
-    this.setState({ fav: true });
+    // this.setState({ fav: true });
     this.props.addToFavorites(obj);
   };
   removeFromFav = (obj) => {
-    this.setState({ fav: false });
+    // this.setState({ fav: false });
     this.props.removeFromFavorites(obj);
-  };
-
-  componentDidMount = () => {
-    let isFav = this.props.favorites.find(
-      (job) => job.id === this.props.theJob.id
-    );
-    if (isFav) {
-      this.setState({ fav: true });
-    }
   };
 
   render() {
     const job = { ...this.props.theJob };
+    const fav = this.props.favorites.find(
+      (job) => job.id === this.props.theJob.id
+    );
     return (
       <>
         <div className="job-box py-0 my-0">
           <div>
             <div className="d-flex align-items-center">
-              {!this.state.fav ? (
+              {!fav ? (
                 <i
                   className="far fa-star fa-2x mr-2  text-warning"
                   onClick={() => this.addToFav(job)}

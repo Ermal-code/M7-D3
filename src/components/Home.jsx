@@ -8,7 +8,7 @@ class Home extends React.Component {
     data: [],
     addSearchOptions: {
       description: "backend",
-      location: "london",
+      location: "berlin",
     },
     showPopover: false,
   };
@@ -31,7 +31,7 @@ class Home extends React.Component {
     try {
       this.setState({ loading: true });
       let url = `/positions.json?description=${this.state.addSearchOptions.description}&location=${this.state.addSearchOptions.location}`;
-      console.log(url);
+
       let response = await fetch(url);
       let data = await response.json();
 
