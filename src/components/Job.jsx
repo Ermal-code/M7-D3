@@ -12,9 +12,6 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 class Job extends React.Component {
-  //   state = {
-  //     fav: false,
-  //   };
   converDateToDay = (day) => {
     let time = day.split(" ");
     time = [time[0], time[1], time[2]];
@@ -27,15 +24,6 @@ class Job extends React.Component {
   sendToDetail = (obj, id) => {
     this.props.addJob(obj);
     this.props.history.push("/details/" + id);
-  };
-
-  addToFav = (obj) => {
-    // this.setState({ fav: true });
-    this.props.addToFavorites(obj);
-  };
-  removeFromFav = (obj) => {
-    // this.setState({ fav: false });
-    this.props.removeFromFavorites(obj);
   };
 
   render() {
@@ -51,12 +39,12 @@ class Job extends React.Component {
               {!fav ? (
                 <i
                   className="far fa-star fa-2x mr-2  text-warning"
-                  onClick={() => this.addToFav(job)}
+                  onClick={() => this.props.addToFavorites(job)}
                 ></i>
               ) : (
                 <i
                   className="fas fa-star fa-2x mr-2 text-warning"
-                  onClick={() => this.removeFromFav(job)}
+                  onClick={() => this.props.removeFromFavorites(job)}
                 ></i>
               )}
 
