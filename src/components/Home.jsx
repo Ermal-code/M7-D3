@@ -1,7 +1,9 @@
 import React from "react";
-import { Form, Col, Container, Button, Spinner } from "react-bootstrap";
+import { Form, Col, Container, Button, Spinner, Toast } from "react-bootstrap";
 import ShowJobs from "./ShowJobs";
+import { connect } from "react-redux";
 
+const mapStateToProps = (state) => state;
 class Home extends React.Component {
   state = {
     loading: false,
@@ -10,6 +12,11 @@ class Home extends React.Component {
       description: "backend",
       location: "london",
     },
+    showPopover: false,
+  };
+
+  popOverToggle = () => {
+    this.setState({ showPopover: !this.state.showPopover });
   };
 
   updateCommentField = (e) => {
@@ -55,6 +62,25 @@ class Home extends React.Component {
     }
   };
 
+  componentDidUpdate(prevProps) {
+    if (prevProps.favorites.length < this.props.favorites.length) {
+      this.setState({ showPopover: true }, () => {
+        if (this.timer) {
+          clearTimeout(this.timer);
+        }
+        this.timer = setTimeout(
+          () => this.setState({ showPopover: false }),
+          2500
+        );
+      });
+    }
+  }
+  componentWillUnmount() {
+    if (this.timer) {
+      clearTimeout(this.timer);
+    }
+  }
+
   render() {
     return (
       <>
@@ -92,6 +118,16 @@ class Home extends React.Component {
               </Button>
             </Form.Row>
           </Form>
+          <Toast
+            className="bg-success"
+            style={{ position: "absolute", top: 30, right: 25 }}
+            show={this.state.showPopover}
+            onClose={this.popOverToggle}
+          >
+            <Toast.Header>
+              <span>Job added to favorites</span>
+            </Toast.Header>
+          </Toast>
           {this.state.loading ? (
             <div className="d-flex justify-content-center mt-4">
               <Spinner animation="border" variant="primary" />
@@ -107,4 +143,4 @@ class Home extends React.Component {
   }
 }
 
-export default Home;
+export default connect(mapStateToProps)(Home);
